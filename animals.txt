@@ -1,0 +1,10 @@
+squirrel
+cheetah
+giraffe
+elephant
+crocodile
+ostrich
+flamingo
+antelope
+orangutan
+penguin

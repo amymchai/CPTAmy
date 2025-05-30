@@ -1,0 +1,10 @@
+swimming
+basketball
+cycling
+boxing
+gymnastics
+fencing
+archery
+weightlifting
+lacrosse
+football

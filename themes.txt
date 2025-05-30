@@ -1,0 +1,10 @@
+pastas.txt
+fruits.txt
+countries.txt
+shapes.txt
+animals.txt
+sports.txt
+jobs.txt
+subjects.txt
+apps.txt
+planets.txt

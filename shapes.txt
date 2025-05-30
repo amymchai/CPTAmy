@@ -1,0 +1,10 @@
+triangle
+rectangle
+hexagon
+pentagon
+parallelogram
+trapezoid
+cylinder
+rhombus
+ellipse
+semicircle
