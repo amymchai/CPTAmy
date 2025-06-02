@@ -1,6 +1,0 @@
-teacher
-engineer
-accountant
-astronaut
-detective
-
