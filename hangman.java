@@ -17,11 +17,11 @@ public class hangman{
 			intChoice = con.readInt();
 			
 			if (intChoice==1){
-				game(con);
+				
 			}else if (intChoice==2){
-				leaderboard(con);
+
 			}else if (intChoice==3){
-				theme(con);
+				0
 			}else if (intChoice==4){
 				con.println("Thanks for playing!");
 			}else{
