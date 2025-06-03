@@ -65,27 +65,64 @@ public class hangman{
 					WordCount.readLine();
 					intWordCount++;
 				}
+				//con.println("TEST WORD COUNT: "+intWordCount);
 				WordCount.close();
 				
-				//Words array
-				String strWords[][] = new String[intWordCount][2];
+				//Assign random numbers
+				String strWords[][];
+				strWords = new String [intWordCount][2];
 				TextInputFile words = new TextInputFile(strThemeChoice);
 				
-				for(intCount= 0; intCount < intWordCount; intCount++){
-					strWords[intCount][1] = words.readLine();
-					strWords[intCount][1]=(int)(Math.random()*100);
+				int intRand;
+				int intCOUNT = 0;
+				for (intCOUNT = 0; intCOUNT < intWordCount; intCOUNT++){
+					while(words.eof()==false){
+						strWords[intCount][0]=words.readLine(); //store word
+						intRand = (int)(Math.random()*100+1); //random number
+						strWords[intCount][1] = intRand +""; //forces integer to be string
+						con.println(strWords[intCount][0] + strWords[intCount][1]);
+					}
+				}
+				words.close();
 				
-				//Bubble sort
+				//bubble sort in descending order
+				int intA;
+				int intB;
+				String strNameTemp;
+				String strNumberTemp;
+				
+				for(intA = 0; intA < intWordCount -1; intA++){
+					for(intB = 0; intB < intWordCount -1; intB++){
+						if(Integer.parseInt(strWords[intB][1]) < Integer.parseInt(strWords[intB+1][1])){
+							//swap words
+							strNameTemp = strWords[intB][0];
+							strWords[intB][0]=strWords[intB+1][0];
+							strWords[intB+1][0]=strNameTemp;
+							
+							//swap numbers
+							strNumberTemp = strWords[intB][1];
+							strWords[intB][1]=strWords[intB+1][1];
+							strWords[intB+1][1] = strNumberTemp;
+						}
+					}
+				}
+				
+				//test print sorted array
+				con.println("\n\nAfter sorting");
+				int intCount2;
+				for(intCount2 = 0; intCount2 < intWordCount; intCount2++){
+					con.println(strWords[intCount2][0] + "-" + strWords[intCount2][1]);
+				}
+				String strChosenWord;
+				strChosenWord = strWords[0][0];
+				con.println("TEST: chosen word is "+strChosenWord);
+	
+		
 				
 				
-
+				
 			
-					
-					
-				
-				
-				
-			}	
+			
 				
 			}else if (intMenu==2){
 				//leaderboard code here
