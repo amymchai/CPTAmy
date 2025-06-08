@@ -158,15 +158,15 @@ public class hangman{
 						con.println("Word: ");
 						int intCount4;
 						for (intCount4 = 0; intCount4 < intWordLength; intCount4++){
-							con.println(strUnderlines[intCount4] + " ");
+							con.print(strUnderlines[intCount4] + " ");
 						}
 						con.println();
 					
 						//stickman DRAW LATER
-						con.println("Body parts drawn: " + intFails + "/7");
+						con.println("Body parts drawn: " + intFails + "/6");
 						int intCount5;
 						for (intCount5 = 0; intCount5 < intFails; intCount5++){
-							con.println("- " + strBodyParts[intCount5]);
+							con.print("- " + strBodyParts[intCount5]);
 						}
 					
 						con.println();
@@ -240,15 +240,14 @@ public class hangman{
 			
 			
 				
-			/*} else if (intMenu==2){
+			} else if (intMenu==2){
 				//leaderboard code here
 				
 			} else if (intMenu==3){
 				//add theme code over here
-			}*/
+			}
 		}
 	}
-}
 }
 
 
