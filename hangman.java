@@ -9,10 +9,10 @@ public class hangman{
 		//MAIN MENU
 		while(intMenu!=4){
 			con.println("HANGMAN");
-			con.println("1. Play Game");
-			con.println("2. View Leaderboard");
-			con.println("3. Add Theme");
-			con.println("4. Quit");	
+			con.println("(1) Play Game");
+			con.println("(2) View Leaderboard");
+			con.println("(3) Add Theme");
+			con.println("(4) Quit");	
 			con.println("Select an option");
 			intMenu = con.readInt();
 			
@@ -79,7 +79,7 @@ public class hangman{
 					strWords[intCOUNT][0]=words.readLine(); //store word
 					intRand = (int)(Math.random()*100+1); //random number
 					strWords[intCOUNT][1] = intRand +""; //forces integer to be string
-					//con.println(strWords[intCOUNT][0] + " - " + strWords[intCOUNT][1]);
+					//TEST: con.println(strWords[intCOUNT][0] + " - " + strWords[intCOUNT][1]);
 				}
 				words.close();
 				
@@ -243,12 +243,20 @@ public class hangman{
 			} else if (intMenu==2){
 				//leaderboard code here
 				
+				
+				
+				
 			} else if (intMenu==3){
 				//add theme code over here
+				
+				
+								
+				
 			}
 		}
 	}
 }
+
 
 
 
