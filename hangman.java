@@ -1,12 +1,13 @@
 import arc.*;
+import java.awt.image.BufferedImage;
 
 public class hangman{
 	public static void main(String[]args){
 		Console con = new Console("Hangman", 1280, 720);		
-		int intMenu = 0;
+		String strMenu = "";
 		
 		//MAIN MENU
-		while(intMenu!=4){
+		while(strMenu.equalsIgnoreCase("q")==false){
 			//draw logo
 			con.setDrawColor(java.awt.Color.WHITE);
 			//H
@@ -39,6 +40,10 @@ public class hangman{
 			con.drawLine(790, 30, 790, 90);
 			con.drawLine(760, 30, 790, 90);
 			
+			int intX = 900;
+			int intY = 20;
+			BufferedImage imgstickman = con.loadImage("stickman.png");
+			con.drawImage(imgstickman, intX, intY);
 			//some spaces
 			con.println();
 			con.println();
@@ -47,14 +52,43 @@ public class hangman{
 			con.println();
 			
 			//menu 
-			con.println("(1) Play Game");
-			con.println("(2) View Leaderboard");
-			con.println("(3) Add Theme");
-			con.println("(4) Quit");	
+			con.println("(p) Play Game");
+			con.println("(l) View Leaderboard");
+			con.println("(t) Add Theme");
+			con.println("(q) Quit");
+			con.println("(h) Help");	
 			con.println("Select an option");
-			intMenu = con.readInt();
+			strMenu = con.readLine();
 			
-			if (intMenu==1){
+			//secret menu
+			if (strMenu.equalsIgnoreCase("s")){
+				con.clear();
+				con.println();
+				con.println();
+				con.println();
+				con.println("Welcome to the secret menu!");
+				con.println("Here is a funny joke for you:");
+				con.println("What do you call a lion with no eyes?");
+				con.println("A lon!");
+			}
+			
+			//help menu
+			if (strMenu.equalsIgnoreCase("h")){
+				con.clear();
+				con.println();
+				con.println();
+				con.println();
+				con.println();
+				con.println("Help menu:");
+				con.println("Hangman is a guessing game for players");
+				con.println("The word to guess is represented by dashes that signify each letter");
+				con.println("Try to guess the word");
+				con.println("If it is correct, you will win");
+				con.println("If it is incorrect, a body part will be drawn on the stickman and a letter will be randomly revealed");
+				con.println("The goal is to keep the stickman alive instead of getting hanged");
+			}
+			
+			if (strMenu.equalsIgnoreCase("p")){
 				//play game code will go here
 				//game logic here
 				
@@ -321,7 +355,7 @@ public class hangman{
 					addtoleaderboard.println(intWins+"");
 					addtoleaderboard.close();
 			
-			} else if (intMenu==2){
+			} if (strMenu.equalsIgnoreCase("l")){
 				//leaderboard code here
 				
 				//count the lines
@@ -374,10 +408,10 @@ public class hangman{
 				}
 			
 			
-							
+		
+			
 				
-				
-			} else if (intMenu==3){
+			} if (strMenu.equalsIgnoreCase("t")){
 				//add theme code over here
 				
 				//creating name of theme file
@@ -426,7 +460,7 @@ public class hangman{
 				}
 				loadNewThemes.close();			
 				
-			}
+			}	
 		}
 	}		
 }

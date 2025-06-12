@@ -5,3 +5,7 @@ ang
 1
 kesa
 5
+amy
+0
+amy
+0
