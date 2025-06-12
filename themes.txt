@@ -5,3 +5,7 @@ shapes.txt
 animals.txt
 sports.txt
 
+
+mcu.txt
+swim.txt
+celebrities.txt

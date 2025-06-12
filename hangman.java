@@ -2,13 +2,51 @@ import arc.*;
 
 public class hangman{
 	public static void main(String[]args){
-		Console con = new Console();
-		
+		Console con = new Console("Hangman", 1280, 720);		
 		int intMenu = 0;
 		
 		//MAIN MENU
 		while(intMenu!=4){
-			con.println("HANGMAN");
+			//draw logo
+			con.setDrawColor(java.awt.Color.WHITE);
+			//H
+			con.drawLine(500, 30, 500, 90);
+			con.drawLine(530, 30, 530, 90);
+			con.drawLine(500, 60, 530, 60);
+			//A
+			con.drawLine(540, 90, 560, 30);
+			con.drawLine(560, 30, 580, 90);
+			con.drawLine(550, 70, 570, 70);
+			//N
+			con.drawLine(590, 30, 590, 90);
+			con.drawLine(620, 30, 620, 90);
+			con.drawLine(590, 30, 620, 90);
+			//G
+			con.drawOval(630, 30, 30, 60);
+			con.drawLine(650, 60, 660, 60);
+			con.drawLine(660, 60, 660, 90);
+			//M
+			con.drawLine(670, 30, 670, 90);
+			con.drawLine(700, 30, 700, 90);
+			con.drawLine(670, 30, 680, 70);
+			con.drawLine(680, 70, 700, 30);
+			//A
+			con.drawLine(710, 90, 730, 30);
+			con.drawLine(730, 30, 750, 90);
+			con.drawLine(720, 70, 740, 70);
+			//N
+			con.drawLine(760, 30, 760, 90);
+			con.drawLine(790, 30, 790, 90);
+			con.drawLine(760, 30, 790, 90);
+			
+			//some spaces
+			con.println();
+			con.println();
+			con.println();
+			con.println();
+			con.println();
+			
+			//menu 
 			con.println("(1) Play Game");
 			con.println("(2) View Leaderboard");
 			con.println("(3) Add Theme");
@@ -24,11 +62,13 @@ public class hangman{
 				
 				//get player name
 				String strPlayerName;
+				con.println();
 				con.println("What is your name?");
 				strPlayerName = con.readLine();
 				
 				//count themes
 				String strThemes[];
+				con.println();
 				TextInputFile CountThemes = new TextInputFile("themes.txt");
 				String strTemp;
 				int intThemeCount = 0;
@@ -42,11 +82,11 @@ public class hangman{
 				//load data into array
 				strThemes = new String[intThemeCount];
 				int intCount;
-				CountThemes = new TextInputFile("themes.txt");
+				TextInputFile LoadThemes = new TextInputFile("themes.txt");
 				for(intCount = 0; intCount < intThemeCount; intCount++){
-					strThemes[intCount]=CountThemes.readLine();
+					strThemes[intCount]= LoadThemes.readLine();
 				}
-				CountThemes.close();
+				LoadThemes.close();
 				
 				//print themes
 				con.println("Here are the themes:");
@@ -55,7 +95,7 @@ public class hangman{
 				}
 				
 				//choose theme
-				con.println("Enter your theme choice:");
+				con.println("Enter your theme choice (include the .txt):");
 				String strThemeChoice = con.readLine();
 				
 				//count words in theme file
@@ -111,7 +151,7 @@ public class hangman{
 				//make the word with the highest randomized number the chosen one
 				String strChosenWord; 
 				strChosenWord = strWords[0][0];
-				con.println("Selected word: " + strChosenWord);
+				//TEST con.println("Selected word: " + strChosenWord);
 	
 				//count letters in the chosen word
 				int intWordLength = strChosenWord.length();
@@ -121,15 +161,7 @@ public class hangman{
 				strAgain = "yes";
 				int intWordList;
 				intWordList = 0;
-				
-				String strBodyParts[] = new String[7];
-				strBodyParts[0] = "Head";
-				strBodyParts[1] = "Body";
-				strBodyParts[2] = "Left Arm";
-				strBodyParts[3] = "Right Arm";
-				strBodyParts[4] = "Left Leg";
-				strBodyParts[5] = "Right Leg";
-				strBodyParts[6] = "Dead";
+				int intWins = 0;
 				
 				while (intWordList < intWordCount && strAgain.equalsIgnoreCase("yes")){
 					strChosenWord = strWords[intWordList][0];
@@ -149,10 +181,77 @@ public class hangman{
 					blnGuessed = false;
 					int intFails;
 					intFails = 0;
-				
+					
 					while (intFails < 7 && blnGuessed == false){
 						con.clear();
-						con.println("HANGMAN");
+						
+						// stickman
+						if (intFails>=1){
+							// drawing
+							con.setDrawColor(java.awt.Color.WHITE);
+							con.drawLine(450, 600, 450, 200); // vertical line
+							con.drawLine(450, 200, 600, 200); // horizontal line
+							con.drawLine(600, 200, 600, 250); // rope 
+							con.drawOval(575, 250, 50, 50); // head
+						} 
+						 if (intFails>=2){
+							// drawing
+							con.setDrawColor(java.awt.Color.WHITE);
+							con.drawLine(450, 600, 450, 200); // vertical line
+							con.drawLine(450, 200, 600, 200); // horizontal line
+							con.drawLine(600, 200, 600, 250); // rope 
+							con.drawOval(575, 250, 50, 50); // head
+							con.drawLine(600, 300, 600, 400); // body
+
+						}
+						 if (intFails>=3){
+							// drawing
+							con.setDrawColor(java.awt.Color.WHITE);
+							con.drawLine(450, 600, 450, 200); // vertical line
+							con.drawLine(450, 200, 600, 200); // horizontal line
+							con.drawLine(600, 200, 600, 250); // rope 
+							con.drawOval(575, 250, 50, 50); // head
+							con.drawLine(600, 300, 600, 400); // body
+							con.drawLine(600, 320, 560, 360); // left arm
+						}
+						 if (intFails>=4){
+							// drawing
+							con.setDrawColor(java.awt.Color.WHITE);
+							con.drawLine(450, 600, 450, 200); // vertical line
+							con.drawLine(450, 200, 600, 200); // horizontal line
+							con.drawLine(600, 200, 600, 250); // rope 
+							con.drawOval(575, 250, 50, 50); // head
+							con.drawLine(600, 300, 600, 400); // body
+							con.drawLine(600, 320, 560, 360); // left arm
+							con.drawLine(600, 320, 640, 360); // right arm
+						}
+						 if (intFails>=5){
+							// drawing
+							con.setDrawColor(java.awt.Color.WHITE);
+							con.drawLine(450, 600, 450, 200); // vertical line
+							con.drawLine(450, 200, 600, 200); // horizontal line
+							con.drawLine(600, 200, 600, 250); // rope 
+							con.drawOval(575, 250, 50, 50); // head
+							con.drawLine(600, 300, 600, 400); // body
+							con.drawLine(600, 320, 560, 360); // left arm
+							con.drawLine(600, 320, 640, 360); // right arm
+							con.drawLine(600, 400, 570, 480); // left leg
+						}
+						 if (intFails>=6){
+							// drawing
+							con.setDrawColor(java.awt.Color.WHITE);
+							con.drawLine(450, 600, 450, 200); // vertical line
+							con.drawLine(450, 200, 600, 200); // horizontal line
+							con.drawLine(600, 200, 600, 250); // rope 
+							con.drawOval(575, 250, 50, 50); // head
+							con.drawLine(600, 300, 600, 400); // body
+							con.drawLine(600, 320, 560, 360); // left arm
+							con.drawLine(600, 320, 640, 360); // right arm
+							con.drawLine(600, 400, 570, 480); // left leg
+							con.drawLine(600, 400, 630, 480); // right leg
+						}
+						con.setDrawColor(java.awt.Color.BLACK);
+						con.println();
 						
 						//underlines
 						con.println("Word: ");
@@ -161,24 +260,21 @@ public class hangman{
 							con.print(strUnderlines[intCount4] + " ");
 						}
 						con.println();
+						con.println();
 					
-						//stickman DRAW LATER
+						//stickman 
 						con.println("Body parts drawn: " + intFails + "/6");
-						int intCount5;
-						for (intCount5 = 0; intCount5 < intFails; intCount5++){
-							con.print("- " + strBodyParts[intCount5]);
-						}
 					
 						con.println();
 						con.println("Guess the full word:");
 						String strGuess;
 						strGuess = con.readLine();
 					
+						
 						if (strGuess.equalsIgnoreCase(strChosenWord)){
 							con.println("You got it!");
 							con.println("You saved the stickman!");
 							blnGuessed = true;
-							int intWins = 0;
 							intWins++;
 						} else {
 							con.println("Uh oh, wrong guess.");
@@ -214,52 +310,123 @@ public class hangman{
 						con.println("No more words left in this theme!");
 						strAgain = "no";
 					}
+					
+					//TEST WIN NUMBER: con.println("Wins: "+intWins);
+					
 				}
-				
-				
-				
-				
-				
-				
-							
-				
 			
+			//leaderboard
+					TextOutputFile addtoleaderboard = new TextOutputFile("leaderboard.txt", true);
+					addtoleaderboard.println(strPlayerName);
+					addtoleaderboard.println(intWins+"");
+					addtoleaderboard.close();
 			
-					
-					
-					
-								
-				
-				
-				
-				 
-				
-				
-				
-				
-			
-			
-				
 			} else if (intMenu==2){
 				//leaderboard code here
 				
+				//count the lines
+				TextInputFile leaderboard = new TextInputFile("leaderboard.txt");
+				int intLineCount = 0;
+				while (leaderboard.eof()==false){
+					leaderboard.readLine();
+					leaderboard.readInt();
+					intLineCount++;
+				}
+				leaderboard.close();
+				//TEST: con.println(intLineCount);
 				
+				//count players by dividing line number by 2 (2 lines for name and win#)
+				int intPlayerCount = intLineCount/2;
+				String strLeaderboard[][] = new String[intPlayerCount][2];
+				
+				//reload file for names and wins
+				TextInputFile leaderboardinput = new TextInputFile("leaderboard.txt");
+				int intCountL = 0;
+				for (intCountL = 0; intCountL < intPlayerCount; intCountL++){
+					strLeaderboard[intCountL][0] = leaderboardinput.readLine();
+					strLeaderboard[intCountL][1] = leaderboardinput.readLine();
+				}
+				leaderboardinput.close();
+				
+				//bubble sort by descending wins
+				String strTempLeaderName;
+				String strTempWins;
+				for (int i = 0; i < intPlayerCount - 1; i++){
+					for (int I = 0; I < intPlayerCount - 1; I++){
+						if(Integer.parseInt(strLeaderboard[I][1]) < Integer.parseInt(strLeaderboard[I+1][1])){
+							//swap
+							//swap name
+							strTempLeaderName = strLeaderboard[I][0];
+							strLeaderboard[I][0] = strLeaderboard[I+1][0];
+							strLeaderboard[I+1][0] = strTempLeaderName;
+							//swap wins
+							strTempWins = strLeaderboard[I][1];
+							strLeaderboard[I][1] = strLeaderboard[I+1][1];
+							strLeaderboard[I+1][1] = strTempWins;
+						}
+					}
+				}
+				
+				//print leaderboard
+				con.println("Leaderboard:");
+				for (int i = 0; i < intPlayerCount; i++){
+					con.println((i+1)+". "+strLeaderboard[i][0]+" - "+strLeaderboard[i][1] + "wins");
+				}
+			
+			
+							
 				
 				
 			} else if (intMenu==3){
 				//add theme code over here
 				
+				//creating name of theme file
+				con.println("Enter the name of your new theme file (e.g. animals.txt)");
+				String strNewThemeName = con.readLine();
 				
-								
+				//adding words
+				con.println("Enter words for the theme one at a time and type 'stop' to finish");
+				
+				TextOutputFile newThemeFile = new TextOutputFile(strNewThemeName, false);
+				String strWord = "";
+				while (!strWord.equalsIgnoreCase("stop")){
+					con.print("Enter word: ");
+					strWord = con.readLine();
+					
+					if (!strWord.equalsIgnoreCase("stop")){
+						newThemeFile.println(strWord);
+					}
+				}
+				newThemeFile.close();
+				
+				//add theme to master theme list
+				TextOutputFile themeslist = new TextOutputFile ("themes.txt", true);
+				themeslist.println(strNewThemeName);
+				themeslist.close();
+				
+				con.println("New theme "+strNewThemeName+ " has been created and added to the themes list.");
+				
+				//refresh the themes list
+				TextInputFile refreshThemes = new TextInputFile("themes.txt");
+				int intNewThemeCount;
+				intNewThemeCount = 0;
+
+				while (refreshThemes.eof()==false){
+					refreshThemes.readLine();
+					intNewThemeCount++;
+				}
+				refreshThemes.close();
+
+				String strThemes[];
+				strThemes = new String [intNewThemeCount];
+				TextInputFile loadNewThemes = new TextInputFile("themes.txt");
+				int intCount9=0;
+				for (intCount9=0; intCount9 < intNewThemeCount; intCount9++){
+					strThemes[intCount9] = loadNewThemes.readLine();
+				}
+				loadNewThemes.close();			
 				
 			}
 		}
-	}
+	}		
 }
-
-
-
-
-
-	
-	
