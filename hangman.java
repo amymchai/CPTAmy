@@ -5,7 +5,9 @@ public class hangman{
 	public static void main(String[]args){
 		Console con = new Console("Hangman", 1280, 720);		
 		String strMenu = "";
-		
+		String strThemes[];
+
+				
 		//MAIN MENU
 		while(strMenu.equalsIgnoreCase("q")==false){
 			//draw logo
@@ -101,7 +103,6 @@ public class hangman{
 				strPlayerName = con.readLine();
 				
 				//count themes
-				String strThemes[];
 				con.println();
 				TextInputFile CountThemes = new TextInputFile("themes.txt");
 				String strTemp;
@@ -284,7 +285,6 @@ public class hangman{
 							con.drawLine(600, 400, 570, 480); // left leg
 							con.drawLine(600, 400, 630, 480); // right leg
 						}
-						con.setDrawColor(java.awt.Color.BLACK);
 						con.println();
 						
 						//underlines
@@ -451,7 +451,6 @@ public class hangman{
 				}
 				refreshThemes.close();
 
-				String strThemes[];
 				strThemes = new String [intNewThemeCount];
 				TextInputFile loadNewThemes = new TextInputFile("themes.txt");
 				int intCount9=0;
